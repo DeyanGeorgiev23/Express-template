@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Template</title>
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/about">About</a>
+                </li>
+                {{#if currentUser}}
+                    <li>
+                        <form action="/user/logout" method="POST" id="logout-form"></form>
+                        <a class="user" href="javascript:document.getElementById('logout-form').submit()">Logout</a>
+                    </li>
+                    <li>{{currentUser.username}}</li>
+                {{else}}
+                    <li>
+                        <a class="user" href="/user/register">Register</a>
+                    </li>
+                    <li>
+                        <a class="user" href="/user/login">Login</a>
+                    </li>
+                {{/if}}
+            </ul>
+        </nav>
+        {{#if globalError}}
+            <h3 class="error">{{globalError}}</h3>
+        {{/if}}
+    </header>
+
+    <main>
+        <div class="container">
+            {{{body}}}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Copyright</p>
+    </footer>
+</body>
+</html>
